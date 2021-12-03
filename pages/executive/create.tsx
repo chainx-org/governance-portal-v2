@@ -67,12 +67,21 @@ const ExecutiveCreate = () => {
       }
     }
 
-    //remove `Template - [Executive Vote] ` from title
-    const split = metadata.title.split('Template - [Executive Vote] ');
-    const editedTitle = split.length > 1 ? split[1] : title;
+    //remove `Template - [ ... ] ` from title
+    const editTitle = title => {
+      const vStr = 'Template - [Executive Vote] ';
+      const pStr = 'Template - [Executive Proposal] ';
+      console.log('title', title);
+      console.log('vStr', vStr);
+      console.log('pStr', pStr);
+      if (title.indexOf(vStr) === 0) return title.replace(vStr, '');
+      if (title.indexOf(pStr) === 0) return title.replace(pStr, '');
+      console.log('edited title', title);
+      return title;
+    };
 
     setFetchFinished(true);
-    setTitle(editedTitle);
+    setTitle(editTitle(metadata.title));
     setSummary(metadata.summary);
     setDate(metadata.date ? new Date(metadata.date).toUTCString() : '');
     setMainnetAddress(metadata.address);
