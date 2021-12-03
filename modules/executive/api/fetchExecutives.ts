@@ -23,7 +23,7 @@ export async function getExecutiveProposals(network?: SupportedNetworks): Promis
 
   const proposalIndex = await (await fetch(EXEC_PROPOSAL_INDEX)).json();
 
-  const owner = 'makerdao';
+  const owner = 'makerdao-dux';
   const repo = 'community';
   const path = 'governance/votes';
 
